@@ -3,10 +3,12 @@ import TextBar from "./TextBar";
 import AddButton from "./AddButton";
 import { useForm } from "../hooks/useForm";
 import ClearDoneButton from "./ClearDoneButton";
+import { addTask } from "../api/tasks";
 
 function AddBar({ setItems }) {
-  const handleClick = () => {
+  const handleClick = async () => {
     if (values.text != "") {
+      const result = await addTask(values.text);
       setItems((items) => [
         ...items,
         { text: values.text, timestamp: new Date(Date.now()), isDone: false },
