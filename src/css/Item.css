@@ -1,0 +1,27 @@
+
+
+.item-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid black;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.check-box {
+    cursor: pointer;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #333;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.mission {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin: auto 10px;
+}

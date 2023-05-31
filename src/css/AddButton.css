@@ -1,0 +1,16 @@
+
+.add-btn {
+    padding: 10px;
+    border-radius: 40px;
+    width: 40px;
+    border: 1px solid black;
+    background-color: #8EE3F5;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background-color: #007BFF;    
+}
