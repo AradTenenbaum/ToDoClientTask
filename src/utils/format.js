@@ -13,3 +13,9 @@ export const dateFormat = (timestamp) => {
       : timestamp.getMinutes())
   );
 };
+
+export const tasksDto = (tasks) => {
+  tasks.forEach((task) => {
+    task.timestamp = new Date(task.timestamp);
+  });
+};

@@ -1,9 +1,13 @@
 import React from "react";
 import "../css/ClearDoneButton.css";
+import { clearTasks } from "../api/tasks";
 
 function ClearDoneButton({ setItems }) {
-  const handleClick = () => {
-    setItems((items) => items.filter((item) => !item.isDone));
+  const handleClick = async () => {
+    const result = await clearTasks();
+    if (!result.error) {
+      setItems(result);
+    }
   };
 
   return (

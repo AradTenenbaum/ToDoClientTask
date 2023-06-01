@@ -1,25 +1,27 @@
-import React, { useState } from "react";
-import TextBar from "../components/TextBar";
-import AddButton from "../components/AddButton";
+import React, { useEffect, useState } from "react";
 import Items from "../components/Items";
 import AddBar from "../components/AddBar";
+import { getAllTasks } from "../api/tasks";
 
 function Home() {
-  const [items, setItems] = useState([
-    { text: "shower", isDone: true, timestamp: new Date(Date.now()) },
-    {
-      text: "develop a todo list",
-      isDone: false,
-      timestamp: new Date(Date.now()),
-    },
-    { text: "make ravioli", isDone: false, timestamp: new Date(Date.now()) },
-  ]);
+  const [items, setItems] = useState([]);
+
+  const fetchData = async () => {
+    const tasks = await getAllTasks();
+    if (tasks && tasks.length > 0) {
+      setItems(tasks);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div>
       <div>
         <AddBar setItems={setItems} />
-        <Items items={items} setItems={setItems} />
+        {items ? <Items items={items} setItems={setItems} /> : ""}
       </div>
     </div>
   );

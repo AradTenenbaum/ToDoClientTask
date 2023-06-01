@@ -9,11 +9,13 @@ function AddBar({ setItems }) {
   const handleClick = async () => {
     if (values.text != "") {
       const result = await addTask(values.text);
-      setItems((items) => [
-        ...items,
-        { text: values.text, timestamp: new Date(Date.now()), isDone: false },
-      ]);
-      Clear();
+      if (!result.error) {
+        setItems((items) => [
+          ...items,
+          { text: values.text, timestamp: new Date(Date.now()), isDone: false },
+        ]);
+        Clear();
+      }
     }
   };
 

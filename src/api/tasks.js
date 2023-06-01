@@ -1,10 +1,12 @@
 import axios from "axios";
 import { BACKEND } from "../constants/url";
+import { tasksDto } from "../utils/format";
 
 export const getAllTasks = async () => {
   try {
-    const tasks = await axios.get(`${BACKEND}/task/all`);
-    return tasks;
+    const { data } = await axios.get(`${BACKEND}/task/all`);
+    if (!data.error) tasksDto(data);
+    return data;
   } catch (error) {
     console.log(error);
     return error;
@@ -13,8 +15,18 @@ export const getAllTasks = async () => {
 
 export const addTask = async (text) => {
   try {
-    const result = await axios.post(`${BACKEND}/task/add`, { text });
-    return result;
+    const { data } = await axios.post(`${BACKEND}/task/add`, { text });
+    return data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+export const setTaskCompletion = async (id) => {
+  try {
+    const { data } = await axios.put(`${BACKEND}/task/set-completion/${id}`);
+    return data;
   } catch (error) {
     console.log(error);
     return error;
@@ -23,8 +35,9 @@ export const addTask = async (text) => {
 
 export const clearTasks = async () => {
   try {
-    const result = await axios.options(`${BACKEND}/task/clear`);
-    return result;
+    const { data } = await axios.post(`${BACKEND}/task/clear`);
+    if (!data.error) tasksDto(data);
+    return data;
   } catch (error) {
     console.log(error);
     return error;
