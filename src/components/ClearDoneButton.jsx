@@ -3,7 +3,7 @@ import "../css/ClearDoneButton.css";
 import { clearTasks } from "../api/tasks";
 
 function ClearDoneButton({ setItems }) {
-  const handleClick = async () => {
+  const handleClick = async (e) => {
     const result = await clearTasks();
     if (!result.error) {
       setItems(result);
@@ -11,7 +11,7 @@ function ClearDoneButton({ setItems }) {
   };
 
   return (
-    <button onClick={handleClick} className="btn">
+    <button onClick={handleClick} type="button" className="btn">
       Clear
     </button>
   );

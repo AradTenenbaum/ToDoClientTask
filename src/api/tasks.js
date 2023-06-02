@@ -2,6 +2,8 @@ import axios from "axios";
 import { BACKEND } from "../constants/url";
 import { tasksDto } from "../utils/format";
 
+axios.defaults.withCredentials = true;
+
 export const getAllTasks = async () => {
   try {
     const { data } = await axios.get(`${BACKEND}/task/all`);
@@ -15,7 +17,15 @@ export const getAllTasks = async () => {
 
 export const addTask = async (text) => {
   try {
-    const { data } = await axios.post(`${BACKEND}/task/add`, { text });
+    const { data } = await axios.post(
+      `${BACKEND}/task/add`,
+      { text },
+      {
+        // headers: {
+        //   "content-type": "application/x-www-form-urlencoded",
+        // },
+      }
+    );
     return data;
   } catch (error) {
     console.log(error);
@@ -25,7 +35,11 @@ export const addTask = async (text) => {
 
 export const setTaskCompletion = async (id) => {
   try {
-    const { data } = await axios.put(`${BACKEND}/task/set-completion/${id}`);
+    const { data } = await axios.put(`${BACKEND}/task/set-completion/${id}`, {
+      // headers: {
+      //   "content-Type": "application/json",
+      // },
+    });
     return data;
   } catch (error) {
     console.log(error);
@@ -41,5 +55,13 @@ export const clearTasks = async () => {
   } catch (error) {
     console.log(error);
     return error;
+  }
+};
+
+export const getUser = async () => {
+  try {
+    await axios.get(`${BACKEND}/user`);
+  } catch (error) {
+    console.log(error);
   }
 };

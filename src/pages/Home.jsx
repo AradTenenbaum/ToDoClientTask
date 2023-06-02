@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Items from "../components/Items";
 import AddBar from "../components/AddBar";
-import { getAllTasks } from "../api/tasks";
+import { getAllTasks, getUser } from "../api/tasks";
 
 function Home() {
   const [items, setItems] = useState([]);
@@ -14,6 +14,7 @@ function Home() {
   };
 
   useEffect(() => {
+    getUser();
     fetchData();
   }, []);
 
